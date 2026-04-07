@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Zephyr app",
+      "type": "shell",
+      "command": "west",
+      "args": [
+        "build",
+        "-p",
+        "always",
+        "-b",
+        "${input:board}",
+        "."
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Smoke build qemu_x86_64",
+      "type": "shell",
+      "command": "west",
+      "args": [
+        "build",
+        "-p",
+        "always",
+        "-b",
+        "qemu_x86_64",
+        ".",
+        "-d",
+        "build/qemu_x86_64"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "board",
+      "type": "promptString",
+      "description": "Zephyr board name",
+      "default": "nucleo_f446re"
+    }
+  ]
+}
