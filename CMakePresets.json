@@ -1,0 +1,63 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "zephyr-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "qemu_x86_64",
+      "displayName": "Zephyr qemu_x86_64",
+      "description": "Host-side smoke build for qemu_x86_64",
+      "inherits": "zephyr-base",
+      "binaryDir": "${sourceDir}/build/qemu_x86_64",
+      "cacheVariables": {
+        "BOARD": "qemu_x86_64"
+      }
+    },
+    {
+      "name": "nucleo_f446re",
+      "displayName": "Zephyr nucleo_f446re",
+      "description": "Representative STM32 hardware build for nucleo_f446re",
+      "inherits": "zephyr-base",
+      "binaryDir": "${sourceDir}/build/nucleo_f446re",
+      "cacheVariables": {
+        "BOARD": "nucleo_f446re"
+      }
+    },
+    {
+      "name": "nucleo_h755zi_q",
+      "displayName": "Zephyr nucleo_h755zi_q",
+      "description": "STM32H7 hardware build for nucleo_h755zi_q",
+      "inherits": "zephyr-base",
+      "binaryDir": "${sourceDir}/build/nucleo_h755zi_q",
+      "cacheVariables": {
+        "BOARD": "nucleo_h755zi_q"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "qemu_x86_64",
+      "configurePreset": "qemu_x86_64"
+    },
+    {
+      "name": "nucleo_f446re",
+      "configurePreset": "nucleo_f446re"
+    },
+    {
+      "name": "nucleo_h755zi_q",
+      "configurePreset": "nucleo_h755zi_q"
+    }
+  ]
+}

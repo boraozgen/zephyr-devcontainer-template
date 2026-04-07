@@ -48,6 +48,21 @@ You can switch boards by replacing `nucleo_f446re` with any board supported by t
 
 Use the `Build Zephyr app` task and enter the board name when prompted.
 
+## VS Code CMake Tools
+
+The workspace now includes CMake presets so the CMake Tools extension can drive Zephyr builds directly.
+
+1. Run `CMake: Select Configure Preset` and choose one of the Zephyr board presets:
+	- `qemu_x86_64`
+	- `nucleo_f446re`
+	- `nucleo_h755zi_q`
+2. Run `CMake: Configure`.
+3. Run `CMake: Build`.
+
+The selected preset controls the Zephyr `BOARD` value and sends output to a matching build directory under `build/`.
+
+After configuration, `CMake: Select Build Target` can be used to switch between generated Zephyr targets such as the default app build and any extra targets exposed by Zephyr for the selected board.
+
 ## Notes
 
 - The Dockerfile pins Zephyr to `v4.3.0`.
