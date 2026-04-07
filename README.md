@@ -8,9 +8,9 @@ Debian Bookworm Slim works here and keeps the base image smaller than Ubuntu. Ub
 
 ## What the container installs
 
-- The latest stable Zephyr release at image build time
-- Zephyr modules from the matching upstream manifest
-- Python dependencies via `west packages pip --install`
+- Zephyr 4.3.0
+- Only the Zephyr modules needed for the documented `qemu_x86_64` and `nucleo_f446re` builds: `cmsis`, `cmsis_6`, and `hal_stm32`
+- Zephyr's base Python build requirements from `scripts/requirements-base.txt`
 - A Zephyr-compatible SDK via `west sdk install`
 - Default SDK toolchains: `arm-zephyr-eabi` and `x86_64-zephyr-elf`
 
@@ -50,5 +50,5 @@ Use the `Build Zephyr app` task and enter the board name when prompted.
 
 ## Notes
 
-- Because the Zephyr version is resolved when the image is built and `west sdk install` selects a compatible SDK during image creation, rebuilding the container later can pick up newer stable releases.
-- If you want stricter reproducibility later, replace the dynamic version resolution in `.devcontainer/Dockerfile` with explicit version pins.
+- The Dockerfile pins Zephyr to `v4.3.0`.
+- The SDK version is selected by `west sdk install` from Zephyr's `SDK_VERSION` file for that pinned release.
