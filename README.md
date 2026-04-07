@@ -4,12 +4,13 @@ This workspace uses a VS Code development container to provide a repeatable Zeph
 
 ## Why Debian
 
-Debian Bookworm Slim works here and keeps the base image smaller than Ubuntu. Ubuntu was only the initial conservative choice because Zephyr's docs target Ubuntu package names directly. The required packages are also available on Debian, so the leaner base is a reasonable fit.
+Debian Stable Slim keeps the base image small while still tracking Debian's current stable release. Ubuntu was only the initial conservative choice because Zephyr's docs target Ubuntu package names directly. The required packages are also available on Debian, so the leaner base is a reasonable fit.
 
 ## What the container installs
 
 - Zephyr 4.3.0
 - Only the Zephyr modules needed for the documented `qemu_x86_64` and `nucleo_f446re` builds: `cmsis`, `cmsis_6`, and `hal_stm32`
+- A shallow manifest clone via `west init --clone-opt=--depth=1`
 - Zephyr's base Python build requirements from `scripts/requirements-base.txt`
 - A Zephyr-compatible SDK via `west sdk install`
 - Default SDK toolchains: `arm-zephyr-eabi` and `x86_64-zephyr-elf`
@@ -53,9 +54,9 @@ Use the `Build Zephyr app` task and enter the board name when prompted.
 The workspace now includes CMake presets so the CMake Tools extension can drive Zephyr builds directly.
 
 1. Run `CMake: Select Configure Preset` and choose one of the Zephyr board presets:
-	- `qemu_x86_64`
-	- `nucleo_f446re`
-	- `nucleo_h755zi_q`
+   - `qemu_x86_64`
+   - `nucleo_f446re`
+   - `nucleo_h755zi_q`
 2. Run `CMake: Configure`.
 3. Run `CMake: Build`.
 

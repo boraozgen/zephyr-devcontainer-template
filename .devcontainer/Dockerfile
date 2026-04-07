@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:stable-slim
 
 ARG ZEPHYR_VERSION=v4.3.0
 ARG ZEPHYR_SDK_TOOLCHAINS="arm-zephyr-eabi x86_64-zephyr-elf"
@@ -9,7 +9,7 @@ ENV ZEPHYR_BASE=/opt/zephyrproject/zephyr \
     PATH=/opt/zephyr-venv/bin:${PATH}
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+    && apt-get install --yes --no-install-recommends \
         ca-certificates \
         cmake \
         file \
@@ -24,11 +24,15 @@ RUN apt-get update \
 RUN python3 -m venv /opt/zephyr-venv \
     && /opt/zephyr-venv/bin/pip install --no-cache-dir --upgrade pip west
 
-RUN west init -m https://github.com/zephyrproject-rtos/zephyr --mr ${ZEPHYR_VERSION} /opt/zephyrproject \
+RUN west init \
+        --manifest-url https://github.com/zephyrproject-rtos/zephyr \
+        --manifest-rev ${ZEPHYR_VERSION} \
+        --clone-opt=--depth=1 \
+        /opt/zephyrproject \
     && cd /opt/zephyrproject \
-    && west update --narrow -o=--depth=1 cmsis cmsis_6 hal_stm32 \
+    && west update --narrow --fetch-opt=--depth=1 cmsis cmsis_6 hal_stm32 \
     && cd /opt/zephyrproject/zephyr \
-    && /opt/zephyr-venv/bin/pip install --no-cache-dir -r scripts/requirements-base.txt \
+    && /opt/zephyr-venv/bin/pip install --no-cache-dir --requirement scripts/requirements-base.txt \
     && west sdk install --install-dir ${ZEPHYR_SDK_INSTALL_DIR} --toolchains ${ZEPHYR_SDK_TOOLCHAINS}
 
 WORKDIR /workspaces
