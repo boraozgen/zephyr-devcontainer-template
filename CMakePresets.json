@@ -26,13 +26,13 @@
       }
     },
     {
-      "name": "nucleo_f446re",
-      "displayName": "Zephyr nucleo_f446re",
-      "description": "Representative STM32 hardware build for nucleo_f446re",
+      "name": "native_sim",
+      "displayName": "Zephyr native_sim",
+      "description": "Host-side smoke build for native_sim",
       "inherits": "zephyr-base",
-      "binaryDir": "${sourceDir}/build/nucleo_f446re",
+      "binaryDir": "${sourceDir}/build/native_sim",
       "cacheVariables": {
-        "BOARD": "nucleo_f446re"
+        "BOARD": "native_sim"
       }
     },
     {
@@ -42,7 +42,7 @@
       "inherits": "zephyr-base",
       "binaryDir": "${sourceDir}/build/nucleo_h755zi_q",
       "cacheVariables": {
-        "BOARD": "nucleo_h755zi_q"
+        "BOARD": "nucleo_h755zi_q/stm32h755xx/m7"
       }
     }
   ],
@@ -52,8 +52,8 @@
       "configurePreset": "qemu_x86_64"
     },
     {
-      "name": "nucleo_f446re",
-      "configurePreset": "nucleo_f446re"
+      "name": "native_sim",
+      "configurePreset": "native_sim"
     },
     {
       "name": "nucleo_h755zi_q",
