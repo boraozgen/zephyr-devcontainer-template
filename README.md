@@ -9,7 +9,7 @@ Debian Stable Slim keeps the base image small while still tracking Debian's curr
 ## What the container installs
 
 - Zephyr 4.3.0
-- Only the Zephyr modules needed for the documented `qemu_x86_64` and `nucleo_f446re` builds: `cmsis`, `cmsis_6`, and `hal_stm32`
+- Only the Zephyr modules needed for the documented builds and RTT console support: `cmsis`, `cmsis_6`, `hal_stm32`, and `segger`
 - A shallow manifest clone via `west init --clone-opt=--depth=1`
 - Zephyr's base Python build requirements from `scripts/requirements-base.txt`
 - A Zephyr-compatible SDK via `west sdk install`
@@ -68,3 +68,23 @@ After configuration, `CMake: Select Build Target` can be used to switch between 
 
 - The Dockerfile pins Zephyr to `v4.3.0`.
 - The SDK version is selected by `west sdk install` from Zephyr's `SDK_VERSION` file for that pinned release.
+
+## RTT console output
+
+The sample is configured to send console output over SEGGER RTT instead of the UART console.
+
+If the container was already built before this change, rebuild the dev container once so the `segger` module is fetched into `/opt/zephyrproject/modules/debug/segger`.
+
+After flashing a hardware target, attach to RTT from the container with:
+
+```sh
+west rtt -d build/<board>
+```
+
+For example:
+
+```sh
+west rtt -d build/nucleo_h755zi_q
+```
+
+This requires a debug probe connection to the board. Host targets such as `qemu_x86_64` can still be built as a smoke test, but RTT viewing is intended for real hardware.
