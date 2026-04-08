@@ -1,25 +1,15 @@
 {
-  "name": "zephyr-evaluation",
+  "name": "zephyr",
   "build": {
-    "dockerfile": "Dockerfile",
-    "context": "..",
-    "args": {
-      "ZEPHYR_SDK_TOOLCHAINS": "arm-zephyr-eabi x86_64-zephyr-elf"
-    }
+    "dockerfile": "Dockerfile"
   },
-  "remoteUser": "root",
-  "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-vscode.cpptools",
         "ms-vscode.cmake-tools",
-        "nordic-semiconductor.nrf-devicetree",
         "marus25.cortex-debug"
-      ],
-      "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
-      }
+      ]
     }
   },
   "runArgs": ["--device=/dev/bus/usb","--device=/dev/ttyACM0"]

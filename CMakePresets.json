@@ -1,10 +1,5 @@
 {
   "version": 3,
-  "cmakeMinimumRequired": {
-    "major": 3,
-    "minor": 20,
-    "patch": 0
-  },
   "configurePresets": [
     {
       "name": "zephyr-base",
@@ -17,30 +12,24 @@
     },
     {
       "name": "qemu_x86_64",
-      "displayName": "Zephyr qemu_x86_64",
       "description": "Host-side smoke build for qemu_x86_64",
       "inherits": "zephyr-base",
-      "binaryDir": "${sourceDir}/build/qemu_x86_64",
       "cacheVariables": {
         "BOARD": "qemu_x86_64"
       }
     },
     {
       "name": "native_sim",
-      "displayName": "Zephyr native_sim",
       "description": "Host-side smoke build for native_sim",
       "inherits": "zephyr-base",
-      "binaryDir": "${sourceDir}/build/native_sim",
       "cacheVariables": {
         "BOARD": "native_sim"
       }
     },
     {
       "name": "nucleo_h755zi_q",
-      "displayName": "Zephyr nucleo_h755zi_q",
       "description": "STM32H7 hardware build for nucleo_h755zi_q",
       "inherits": "zephyr-base",
-      "binaryDir": "${sourceDir}/build/nucleo_h755zi_q",
       "cacheVariables": {
         "BOARD": "nucleo_h755zi_q/stm32h755xx/m7"
       }
