@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Zephyr: Debug",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "openocd",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build/${command:cmake.activeConfigurePresetName}/zephyr/zephyr.elf",
+      "gdbPath": "/opt/toolchains/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
+      "serverpath": "/opt/toolchains/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/openocd",
+      "configFiles": [
+        "/opt/zephyrproject/zephyr/boards/st/${command:cmake.activeConfigurePresetName}/support/openocd.cfg"
+      ],
+      "rtos": "Zephyr",
+      "runToEntryPoint": "main",
+      "rttConfig": {
+        "enabled": true,
+        "address": "auto",
+        "decoders": [
+            {
+                "port": 0,
+                "type": "console"
+            }
+        ]
+      }
+    }
+  ]
+}
