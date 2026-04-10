@@ -34,7 +34,7 @@ RUN west init \
         --clone-opt=--depth=1 \
         /opt/zephyrproject \
     && cd /opt/zephyrproject \
-    && west update --narrow --fetch-opt=--depth=1 cmsis cmsis_6 hal_stm32 segger \
+    && west update --narrow --fetch-opt=--depth=1 cmsis cmsis_6 hal_stm32 hal_nordic segger \
     && cd /opt/zephyrproject/zephyr \
     && /opt/zephyr-venv/bin/pip install --no-cache-dir --requirement scripts/requirements-base.txt \
     && west sdk install --install-dir ${ZEPHYR_SDK_INSTALL_DIR} --toolchains ${ZEPHYR_SDK_TOOLCHAINS}

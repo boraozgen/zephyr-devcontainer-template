@@ -33,6 +33,14 @@
       "cacheVariables": {
         "BOARD": "nucleo_h755zi_q/stm32h755xx/m7"
       }
+    },
+    {
+      "name": "nrf54l15dk",
+      "description": "Nordic nRF54L15DK hardware build",
+      "inherits": "zephyr-base",
+      "cacheVariables": {
+        "BOARD": "nrf54l15dk/nrf54l15/cpuapp"
+      }
     }
   ],
   "buildPresets": [
@@ -47,6 +55,10 @@
     {
       "name": "nucleo_h755zi_q",
       "configurePreset": "nucleo_h755zi_q"
+    },
+    {
+      "name": "nrf54l15dk",
+      "configurePreset": "nrf54l15dk"
     }
   ]
 }
